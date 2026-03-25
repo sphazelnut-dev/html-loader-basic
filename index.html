@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>html file loader</title>
+</head>
+<body>
+
+<h2>load html file</h2>
+
+<input type="file" id="fileInput" accept=".html,.htm">
+
+<hr>
+
+<div id="renderArea"></div>
+
+<script>
+    (function() {
+        const fileInput = document.getElementById('fileInput');
+        const renderArea = document.getElementById('renderArea');
+
+        fileInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+          
+            if (!file) {
+                return;
+            }
+            if (!file.name.match(/\.(html|htm)$/i)) {
+                renderArea.innerHTML = '<p style="color: darkred;">error code 1</p>';
+                return;
+            }
+
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const htmlContent = e.target.result;
+                renderArea.innerHTML = htmlContent;
+            };
+
+            reader.onerror = function() {
+                renderArea.innerHTML = '<p>error code 2</p>';
+            };
+            reader.readAsText(file);
+        });
+    })();
+</script>
+
+</body>
+</html>
