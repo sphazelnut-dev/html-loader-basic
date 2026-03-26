@@ -490,7 +490,6 @@ body::before {
 
 .info-btn:hover {
   transform: translateY(-3px);
-  background: var(--hover-bg);
   border-color: var(--accent-color);
 }
 
