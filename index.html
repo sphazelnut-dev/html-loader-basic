@@ -3,21 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>html file loader</title>
+    <!-- link to external stylesheet -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<h2>load html file</h2>
+<div class="relic-logo-container">
+    <img class="relic-logo-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%235b9eff'/%3E%3Cpath fill='white' d='M50 20 L65 40 L60 40 L55 28 L55 65 L45 65 L45 28 L40 40 L35 40 Z'/%3E%3C/svg%3E" alt="relic logo">
+    <h1 class="relic-title">html file loader</h1>
+</div>
 
-<input type="file" id="fileInput" accept=".html,.htm">
+<div class="game-filters">
+    <button class="filter-btn active" id="uploadFilterBtn">📁 upload html</button>
+</div>
 
-<hr>
+<div class="search-container">
+    <input type="file" id="fileInput" accept=".html,.htm">
+</div>
 
-<div id="renderArea"></div>
+<div id="renderArea" class="content"></div>
 
-    
-<div style="position: fixed; bottom: 8px; right: 12px; font-size: 12px; color: #aaa; font-family: monospace; background: transparent; pointer-events: none; z-index: 9999;">
-    made by sphazelnut
+<div class="homepage-info-buttons">
+    <button class="info-btn" id="watermarkBtn">made by sphazelnut</button>
 </div>
 
 <script>
@@ -32,7 +39,7 @@
                 return;
             }
             if (!file.name.match(/\.(html|htm)$/i)) {
-                renderArea.innerHTML = '<p style="color: darkred;">error code 1</p>';
+                renderArea.innerHTML = '<p style="color: darkred;">error code 1 — please upload an .html or .htm file</p>';
                 return;
             }
 
@@ -44,7 +51,7 @@
             };
 
             reader.onerror = function() {
-                renderArea.innerHTML = '<p>error code 2</p>';
+                renderArea.innerHTML = '<p>error code 2 — failed to read file</p>';
             };
             reader.readAsText(file);
         });
